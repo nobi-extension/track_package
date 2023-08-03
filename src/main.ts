@@ -8,7 +8,7 @@ function init() {
     const rawCode = decodeURIComponent(m[1]!);
     const code = rawCode.replace(/-/g, '').match(/[0-9A-Z]{10,}/)?.[0] ?? null;
     if (code === null) {
-        return error(`${rawCode} は有効な追跡番号ではありません。`);
+        return error(`「${rawCode} 」 は有効な追跡番号ではありません。`);
     }
     const links = {
         'ヤマト運輸': `https://jizen.kuronekoyamato.co.jp/jizen/servlet/crjz.b.NQ0010?id=${code}`,
@@ -53,9 +53,10 @@ function init() {
     container.append(pAll);
 
     function error(msg: string) {
-        const p = document.getElementById('error-message')!;
+        const p = document.createElement('p');
+        p.classList.add('error'); 
         p.textContent = msg;
-        container.remove();
+        container.append(p);
     }
 
     function format(code: string): string {
