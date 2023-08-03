@@ -16,6 +16,7 @@ function init() {
         '日本郵政': `https://trackings.post.japanpost.jp/services/srv/search/direct?locale=ja&reqCodeNo1=${code}`,
         '福山通運': `https://corp.fukutsu.co.jp/situation/tracking_no_hunt/${code}`,
     };
+    const hrefs: string[] = [];
     for (const [name, href] of Object.entries(links)) {
         const p = document.createElement('p');
         p.classList.add('item');
@@ -23,6 +24,7 @@ function init() {
         const a = document.createElement('a');
         p.append(a);
         a.href = href;
+        hrefs.push(href);
         a.target = '_blank';
         const spanTitle = document.createElement('span');
         spanTitle.classList.add('title');
@@ -36,6 +38,19 @@ function init() {
             spanURL,
         );
     }
+
+    const pAll = document.createElement('p');
+    pAll.classList.add('item');
+    pAll.innerHTML = `<a><span class="title">すべてのリンクを開く</span></a>`;
+    pAll.addEventListener('click', ev => {
+        if (window.confirm(`${hrefs.length}件のリンクをすべて開きますか?`)) {
+            ev.preventDefault();
+            for (const href of hrefs) {
+                chrome.tabs.create({ url: href });
+            }
+        }
+    });
+    container.append(pAll);
 
     function error(msg: string) {
         const p = document.getElementById('error-message')!;
