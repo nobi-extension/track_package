@@ -2,6 +2,11 @@
     "name": "荷物を追跡",
     "description": "選択中のテキスト（追跡番号）をもとに、主要な荷物追跡ページへのリンクを作成します。",
     "version": "1.0.0",
+    "icons": {
+        "16": "icon16.png",
+        "48": "icon48.png",
+        "128": "icon128.png"
+    },
     "manifest_version": 3,
     "permissions": [
         "contextMenus",

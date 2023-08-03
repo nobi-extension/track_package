@@ -9,7 +9,7 @@ copyFiles();
 
 function copyFiles() {
     for (const f of readdirSync('./src')) {
-        if (/\.(html|js|css|json|svg|jpg|ico|png)$/i.test(f)) {
+        if (/\.(html|js|css|json|jpg|ico|png)$/i.test(f)) {
             const src = `${SRC}/${f}`;
             const dst = `${DEST}/${f}`;
             mkdirSync(DEST, { recursive: true });
