@@ -45,9 +45,7 @@ function init() {
     pAll.addEventListener('click', ev => {
         if (window.confirm(`${hrefs.length}件のリンクをすべて開きますか?`)) {
             ev.preventDefault();
-            for (const href of hrefs) {
-                chrome.tabs.create({ url: href });
-            }
+            openAll();
         }
     });
     container.append(pAll);
@@ -64,6 +62,15 @@ function init() {
             return code.split(/(?<=^(?:\d{4})+)/).join('-');
         } else {
             return code;
+        }
+    }
+
+    async function openAll() {
+        const tab = await chrome.tabs.getCurrent();
+        let index = tab?.index;
+        if (index != null) index += 1;
+        for (const href of hrefs.reverse()) {
+            chrome.tabs.create({ url: href, index, active: true });
         }
     }
 }

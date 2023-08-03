@@ -10,5 +10,6 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
     if (selection == null) return;
     const code = selection.trim();
     const url = chrome.runtime.getURL(`main.html?code=${encodeURIComponent(code)}`);
-    chrome.tabs.create({ url, active: true });
+    const index = (tab != null) ? (tab.index + 1) : void(0);
+    chrome.tabs.create({ url, index, active: true });
 });
