@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>荷物を追跡</title>
+        <meta charset="utf-8">
+        <style>
+            body {
+                font-size: 20px;
+                padding: 1em;
+            }
+            h1 {
+                margin: 0.5em;
+                font-size: 140%;
+            }
+            h1 .small {
+                font-size: 45%;
+                font-weight: normal;
+                color: white;
+                background-color: #888888;
+                margin: 0 0.5em;
+                padding: 0.2em 0.5em;
+                border-radius: 0.3em;
+                vertical-align: middle;
+                display: inline-block;
+            }
+            p.item {
+                line-height: 1;
+                margin: 1.5em 0;
+            }
+            a {
+                color: #1a0dab;
+                text-decoration: none;
+            }
+            a:visited {
+                color: #681da8;
+            }
+            a:hover span.title {
+                text-decoration: underline;
+            }
+            span.url {
+                font-size: 70%;
+                color: #4d5156 !important;
+            }
+            #container {
+                display: inline-block;
+                padding: 0 1em;
+                border: 1px solid #aaa;
+                border-radius: 0.4em;
+            }
+            #error-message {
+                color: #880000;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>荷物を追跡 <span class="small">Chorme 拡張機能</span></h1>
+        <div id="container"></div>
+        <p id="error-message"></p>
+        <script src="main.js"></script>
+    </body>
+</html>
