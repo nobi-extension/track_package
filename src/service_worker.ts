@@ -1,9 +1,9 @@
-const ID = 'com.nobapp.track_num_search';
+const ID = 'nobi.extension.track_package';
 chrome.contextMenus.create({
     'id': ID,
     'contexts': ['selection'],
     'type': 'normal',
-    'title': '荷物 「%s」 を追跡',
+    'title': '荷物番号 「%s」 を追跡',
 });
 chrome.contextMenus.onClicked.addListener((info, tab) => {
     const selection = info.selectionText;
