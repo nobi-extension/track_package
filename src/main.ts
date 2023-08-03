@@ -11,25 +11,23 @@ function init() {
         return error(`「${rawCode} 」 は有効な追跡番号ではありません。`);
     }
     const items = [
-        createAnchor(label('ヤマト運輸', code), `https://jizen.kuronekoyamato.co.jp/jizen/servlet/crjz.b.NQ0010?id=${code}`),
-        createAnchor(label('佐川急便', code), `https://k2k.sagawa-exp.co.jp/p/web/okurijosearch.do?okurijoNo=${code}`),
-        createAnchor(label('日本郵政', code), `https://trackings.post.japanpost.jp/services/srv/search/direct?locale=ja&reqCodeNo1=${code}`),
-        createAnchor(label('福山通運', code), `https://corp.fukutsu.co.jp/situation/tracking_no_hunt/${code}`),
+        createAnchorToPost(label('ヤマト運輸', code), 'https://toi.kuronekoyamato.co.jp/cgi-bin/tneko', { number01: code }),
+        createAnchorToGet(label('佐川急便', code), `https://k2k.sagawa-exp.co.jp/p/web/okurijosearch.do?okurijoNo=${code}`),
+        createAnchorToGet(label('日本郵政', code), `https://trackings.post.japanpost.jp/services/srv/search/direct?locale=ja&reqCodeNo1=${code}`),
+        createAnchorToGet(label('福山通運', code), `https://corp.fukutsu.co.jp/situation/tracking_no_hunt/${code}`),
     ];
     for (const item of items) {
         container.append(createElem('p', { class: 'item' }, [item]));
     }
 
-    const pAll = document.createElement('p');
-    pAll.classList.add('item');
-    pAll.innerHTML = `<a><span class="title">すべてのリンクを開く</span></a>`;
-    pAll.addEventListener('click', ev => {
+    const aAll = createAnchorToGet('すべてのリンクを開く', '');
+    aAll.addEventListener('click', ev => {
         if (window.confirm(`${items.length}件のリンクをすべて開きますか?`)) {
             ev.preventDefault();
             openAll();
         }
     });
-    container.append(pAll);
+    container.append(createElem('p', { class: 'item' }, [aAll]));
 
     function error(msg: string) {
         const p = document.createElement('p');
@@ -38,7 +36,7 @@ function init() {
         container.append(p);
     }
 
-    async function openAll() {
+    function openAll() {
         for (const item of items) {
             item.click();
         }
@@ -56,12 +54,30 @@ function init() {
         }
     }
 
-    function createAnchor(text: string, href: string): HTMLAnchorElement {
+    function createAnchorToGet(text: string, href: string): HTMLAnchorElement {
         return createElem('a', { href, target: '_blank' }, [
             createElem('span', { class: 'title' }, text),
             createElem('br', {}),
             createElem('span', { class: 'url' }, href),
         ]) as HTMLAnchorElement;
+    }
+
+    type FormValues = { [key: string]: string };
+
+    function createAnchorToPost(label: string, action: string, values: FormValues): HTMLAnchorElement {
+        const formName = `form-${document.forms.length + 1}`;
+        const form = createElem('form', { name: formName, method: 'post', action, target: '_blank' });
+        for (const [name, value] of Object.entries(values)) {
+            form.append(createElem('input', { type: 'hidden', name, value }));
+        }
+        document.body.append(form);
+        const a = createAnchorToGet(label, action);
+        a.href = `${action}?${Object.entries(values).map(([k,v])=>`${k}=${v}`).join('&')}`;
+        a.addEventListener('click', ev => {
+            ev.preventDefault();
+            document.forms.namedItem(formName)!.submit();
+        });
+        return a;
     }
 
     type ContentsParam = null|string|HTMLElement|ContentsParam[]|(() => ContentsParam);
