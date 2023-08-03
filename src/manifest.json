@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "荷物を追跡",
     "description": "選択中のテキスト（追跡番号）をもとに、荷物追跡ページ（ヤマト運輸、佐川急便、日本郵政、福山通運）へのリンクを作成します。",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "icons": {
         "16": "icon16.png",
         "48": "icon48.png",
