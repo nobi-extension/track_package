@@ -54,15 +54,17 @@ function init() {
         }
     }
 
-    function createAnchorToGet(text: string, href: string): HTMLAnchorElement {
+    type FormValues = { [key: string]: string };
+
+    function createAnchorToGet(text: string, url: string, values: FormValues = {}): HTMLAnchorElement {
+        const search = Object.entries(values).map(([k,v]) => `${k}=${encodeURIComponent(v)}`).join('&');
+        const href = (search !== '') ? `${url}?${search}` : url;
         return createElem('a', { href, target: '_blank' }, [
             createElem('span', { class: 'title' }, text),
             createElem('br', {}),
             createElem('span', { class: 'url' }, href),
         ]) as HTMLAnchorElement;
     }
-
-    type FormValues = { [key: string]: string };
 
     function createAnchorToPost(label: string, action: string, values: FormValues): HTMLAnchorElement {
         const formName = `form-${document.forms.length + 1}`;
@@ -72,7 +74,7 @@ function init() {
         }
         document.body.append(form);
         const a = createAnchorToGet(label, action);
-        a.href = `${action}?${Object.entries(values).map(([k,v])=>`${k}=${v}`).join('&')}`;
+        a.href = action;
         a.addEventListener('click', ev => {
             ev.preventDefault();
             document.forms.namedItem(formName)!.submit();
