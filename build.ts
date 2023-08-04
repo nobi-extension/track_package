@@ -5,7 +5,7 @@ const archiver = require('archiver');
 
 const DEST = './dist';
 const SRC = './src';
-const ZIP = './pack.zip';
+const ZIP = pathLib.join(DEST, 'pack.zip');
 
 compileTS();
 copyFiles();
