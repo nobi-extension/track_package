@@ -3,6 +3,8 @@
     "name": "荷物を追跡",
     "description": "選択中のテキスト（追跡番号）をもとに、荷物追跡ページ（ヤマト運輸、佐川急便、日本郵便、福山通運）へのリンクを作成します。",
     "version": "0.0.2",
+    "homepage_url": "https://github.com/nobi-extension/track_package",
+    "incognito": "split",
     "icons": {
         "16": "icon16.png",
         "48": "icon48.png",
