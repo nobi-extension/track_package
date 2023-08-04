@@ -13,7 +13,7 @@ function init() {
     const items = [
         createAnchorToPost(label('ヤマト運輸', code), 'https://toi.kuronekoyamato.co.jp/cgi-bin/tneko', { number01: code }),
         createAnchorToGet(label('佐川急便', code), `https://k2k.sagawa-exp.co.jp/p/web/okurijosearch.do?okurijoNo=${code}`),
-        createAnchorToGet(label('日本郵政', code), `https://trackings.post.japanpost.jp/services/srv/search/direct?locale=ja&reqCodeNo1=${code}`),
+        createAnchorToGet(label('日本郵便', code), `https://trackings.post.japanpost.jp/services/srv/search/direct?locale=ja&reqCodeNo1=${code}`),
         createAnchorToGet(label('福山通運', code), `https://corp.fukutsu.co.jp/situation/tracking_no_hunt/${code}`),
     ];
     for (const item of items) {
