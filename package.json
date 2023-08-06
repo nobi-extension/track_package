@@ -1,14 +1,13 @@
 {
-  "name": "search_track_num",
-  "version": "1.0.0",
+  "name": "track_package",
+  "version": "0.1.2",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npx ts-node ./build.ts"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "nobi-extension",
+  "license": "MIT",
   "devDependencies": {
     "@types/chrome": "^0.0.243",
     "@types/node": "^20.4.6",
