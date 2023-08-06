@@ -11,8 +11,7 @@
         "128": "icon128.png"
     },
     "permissions": [
-        "contextMenus",
-        "tabs"
+        "contextMenus"
     ],
     "background": {
         "service_worker": "service_worker.js"
