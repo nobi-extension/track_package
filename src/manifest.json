@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "荷物を追跡",
     "description": "荷物追跡用のリンクを作成します。失われたGoogle検索の便利機能を再現するものです。",
-    "version": "0.2.3",
+    "version": "0.2.4",
     "homepage_url": "https://github.com/nobi-extension/track_package",
     "incognito": "split",
     "icons": {
