@@ -22,8 +22,8 @@ function init() {
 
     const aAll = createAnchorToGet('すべてのリンクを開く', '');
     aAll.addEventListener('click', ev => {
+        ev.preventDefault();
         if (window.confirm(`${items.length}件のリンクをすべて開きますか?`)) {
-            ev.preventDefault();
             openAll();
         }
     });
