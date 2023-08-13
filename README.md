@@ -16,7 +16,7 @@
 * Edge
 
 ## インストール
-[chrome ウェブストア](https://chrome.google.com/webstore/detail/oenibinhbdeecoknjbonjdkaoakagodk) からインストールしてください。
+[chrome ウェブストア](https://chrome.google.com/webstore/detail/oenibinhbdeecoknjbonjdkaoakagodk){:target="_blank"} からインストールしてください。
 
 ## 使い方
 1. 閲覧中の画面上で荷物の追跡番号を選択して右クリック
