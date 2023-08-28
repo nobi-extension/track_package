@@ -1,15 +1,20 @@
 import * as pathLib from "path";
 import { execSync } from "child_process";
-import { copyFileSync, createReadStream, createWriteStream, mkdirSync, readdirSync, statSync } from "fs";
+import { copyFileSync, createReadStream, createWriteStream, mkdirSync, readdirSync, rmSync, rmdirSync, statSync } from "fs";
 const archiver = require('archiver');
 
 const DEST = './dist';
 const SRC = './src';
 const ZIP = pathLib.join(DEST, 'pack.zip');
 
+clean();
 compileTS();
 copyFiles();
 zip();
+
+function clean() {
+    rmSync(DEST, { recursive: true });
+}
 
 function copyFiles() {
     for (const f of readdirSync('./src')) {
